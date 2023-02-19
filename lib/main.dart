@@ -33,14 +33,24 @@ class DicePage extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
+            child: TextButton(
+              style: ButtonStyle(
+                  overlayColor:
+                      MaterialStateColor.resolveWith((states) => Colors.red)),
+              onPressed: () {
+                print("Left Button is Pressed");
+              },
               child: Image.asset("images/dice1.png"),
             ),
           ),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
+            child: TextButton(
+              style: ButtonStyle(
+                  overlayColor:
+                      MaterialStateColor.resolveWith((states) => Colors.red)),
+              onPressed: () {
+                print("Right Button is Pressed");
+              },
               child: Image.asset("images/dice1.png"),
             ),
           ),
