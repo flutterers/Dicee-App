@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         home: Scaffold(
           backgroundColor: Colors.red,
           appBar: AppBar(
-            title: const Text("Dicee"),
+            title: Center(child: const Text("Dicee")),
             backgroundColor: Colors.red,
           ),
           body: DicePage(),
@@ -24,8 +25,23 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class DicePage extends StatelessWidget {
+class DicePage extends StatefulWidget {
   const DicePage({Key? key}) : super(key: key);
+
+  @override
+  State<DicePage> createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  late int leftDiceNo = 1;
+  late int rightDiceNo = 1;
+
+  void randomize() {
+    setState(() {
+      leftDiceNo = Random().nextInt(6) + 1;
+      rightDiceNo = Random().nextInt(6) + 1;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +54,10 @@ class DicePage extends StatelessWidget {
                   overlayColor:
                       MaterialStateColor.resolveWith((states) => Colors.red)),
               onPressed: () {
+                randomize();
                 print("Left Button is Pressed");
               },
-              child: Image.asset("images/dice1.png"),
+              child: Image.asset("images/dice$leftDiceNo.png"),
             ),
           ),
           Expanded(
@@ -49,9 +66,10 @@ class DicePage extends StatelessWidget {
                   overlayColor:
                       MaterialStateColor.resolveWith((states) => Colors.red)),
               onPressed: () {
+                randomize();
                 print("Right Button is Pressed");
               },
-              child: Image.asset("images/dice1.png"),
+              child: Image.asset("images/dice$rightDiceNo.png"),
             ),
           ),
         ],
